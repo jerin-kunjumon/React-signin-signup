@@ -21,6 +21,8 @@ var mongoUrl = process.env.MONGO_URL
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true
+}).then(()=>{
+  console.log("Database connected");
 });
   app.listen(port, ()=>{
       console.log(`Server is running on port : ${port}`)

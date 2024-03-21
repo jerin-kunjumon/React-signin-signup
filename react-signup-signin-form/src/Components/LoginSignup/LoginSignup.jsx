@@ -10,13 +10,13 @@ const LoginSignup = () => {
 
     const [action,setAction] = useState("Sign Up");
     
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('')
+
     
-    // let errorsObj = { email:'', password:'' };
-    // const [errors,setErrors] = useState(errorsObj)
+    let errorsObj = { email:'', password:'' };
+    const [errors,setErrors] = useState(errorsObj)
 
     const [formData, setFormData] = useState({
+      name:'',
         email: '',
         password : ''
       });
@@ -52,20 +52,20 @@ const LoginSignup = () => {
               console.error('There was an error!', error);
             }); 
         }
-        // let error = false;
-        // const errorObj = {...errorsObj};
-        // if(email === ''){
-        //     errorObj.email ='Email is required';
-        //     error = true;
-        // }
-        // if(password === ''){
-        //     errorObj.password = 'Password is required'
-        //     error = true;
-        // }
-        // setErrors(errorObj);
-        // if(!error){
-        //     console.log('Form submit');
-        // }
+        let error = false;
+        const errorObj = {...errorsObj};
+        if(formData.email === ''){
+            errorObj.email ='Email is required';
+            error = true;
+        }
+        if(formData.password === ''){
+            errorObj.password = 'Password is required'
+            error = true;
+        }
+        setErrors(errorObj);
+        if(!error){
+            console.log('Form submit');
+        }
     }
 
   return (
@@ -93,22 +93,64 @@ const LoginSignup = () => {
                 <input type="email" name='email' placeholder='Email Id' value={formData.email}
                 onChange={handleChange}/>
             </div>
-            {/* {errors.email && <div className='m-auto'>{errors.email}</div>} */}
+            {errors.email && <div className='m-auto'>{errors.email}</div>}
 
             <div className="input">
                 <img src={password_icon} alt="" />
                 <input type="password" name='password' placeholder='Password' value={formData.password}
                 onChange={handleChange}/>
             </div>
-            {/* {errors.password && <div className='m-auto'>{errors.password}</div>} */}
+            {errors.password && <div className='m-auto'>{errors.password}</div>}
 
         </div>
         {action==="Sign Up"?<div></div>:<div className="forgot-password">Forgot Password? <span>Click here!</span></div>}
-        
         <div className="submit-container">
-            <div  onClick={()=>{setAction("Sign Up")}}><button type="submit" className={action==="Login"?"submit gray":"submit"}>Sign Up</button></div>
-            <div   onClick={()=>{setAction("Login")}}><button type="submit" className={action==="Sign Up"?"submit gray":"submit"}>Login</button></div>
+            <div  onClick={()=>{setTimeout(() => {setAction("Sign Up")}, 200)}}><button type={action === "Sign Up"?'submit':'button'} className={action==="Login"?"submit gray":"submit"}>Sign Up</button></div>
+            <div   onClick={()=>{setTimeout(() => {setAction("Login")}, 200)}}><button type={action === "Login"?'submit':'button'} className={action==="Sign Up"?"submit gray":"submit"}>Login</button></div>
         </div>
+
+        {/* <div className="submit-container">
+  {action === "Sign Up" ? (
+    <button
+      type="submit"
+      className="submit"
+      // onClick={() => {
+      //   setAction("Login");
+      // }}
+    >
+      Sign Up
+    </button>
+  ) : (
+    <button
+      type="button"
+      className="submit gray"
+      onClick={() => setAction("Sign up")}
+    >
+      Sign Up
+    </button>
+  )}
+  {action === "Login" ? (
+    <button
+      type="submit"
+      className="submit"
+      onClick={() => {
+        onSignup();
+      }}
+    >
+      Login
+    </button>
+  ) : (
+    <button
+      type="button"
+      className="submit gray"
+      onClick={() => setAction("Login")}
+    >
+      Login
+    </button>
+  )}
+</div> */}
+
+
         </form>
     </div>
   )
