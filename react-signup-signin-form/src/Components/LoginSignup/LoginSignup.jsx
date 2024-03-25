@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import './LoginSignup.css'
 import axios from 'axios';
-import {  Link } from "react-router-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import user_icon from '../Assets/person.png';
 import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password.png';
+import Home from '../Pages/Home';
+
+import { useNavigate } from 'react-router-dom';
 
 const LoginSignup = () => {
-
+  const navigate = useNavigate();
+  const homePage = () => {
+    navigate('/home');
+  }
     const [action,setAction] = useState("Sign Up");
     
 
@@ -38,6 +42,8 @@ const LoginSignup = () => {
         if(action==="Login"){
             axios.post('http://localhost:3000/api/login', formData)
     .then(response => {
+      alert("Login Successful")
+      homePage()
       console.log(response.data);
     })
     .catch(error => {
@@ -107,12 +113,10 @@ const LoginSignup = () => {
         {action==="Sign Up"?<div></div>:<div className="forgot-password">Forgot Password? <span>Click here!</span></div>}
         <div className="submit-container">
             <div  onClick={()=>{setTimeout(() => {setAction("Sign Up")}, 400)}}><button type={action === "Sign Up"?'submit':'button'} className={action==="Login"?"submit gray":"submit"}>Sign Up</button></div>
-            <Link to ="/home">
               <div   onClick={()=>{setTimeout(() => {setAction("Login")}, 400)}}><button type={action === "Login"?'submit':'button'} className={action==="Sign Up"?"submit gray":"submit"}>Login</button></div>
-            </Link>
         </div>
 
-      
+
 
 
         </form>
