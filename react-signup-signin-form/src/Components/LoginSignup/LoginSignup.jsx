@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './LoginSignup.css'
 import axios from 'axios';
-
+import {  Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import user_icon from '../Assets/person.png';
 import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password.png';
@@ -105,50 +106,13 @@ const LoginSignup = () => {
         </div>
         {action==="Sign Up"?<div></div>:<div className="forgot-password">Forgot Password? <span>Click here!</span></div>}
         <div className="submit-container">
-            <div  onClick={()=>{setTimeout(() => {setAction("Sign Up")}, 200)}}><button type={action === "Sign Up"?'submit':'button'} className={action==="Login"?"submit gray":"submit"}>Sign Up</button></div>
-            <div   onClick={()=>{setTimeout(() => {setAction("Login")}, 200)}}><button type={action === "Login"?'submit':'button'} className={action==="Sign Up"?"submit gray":"submit"}>Login</button></div>
+            <div  onClick={()=>{setTimeout(() => {setAction("Sign Up")}, 400)}}><button type={action === "Sign Up"?'submit':'button'} className={action==="Login"?"submit gray":"submit"}>Sign Up</button></div>
+            <Link to ="/home">
+              <div   onClick={()=>{setTimeout(() => {setAction("Login")}, 400)}}><button type={action === "Login"?'submit':'button'} className={action==="Sign Up"?"submit gray":"submit"}>Login</button></div>
+            </Link>
         </div>
 
-        {/* <div className="submit-container">
-  {action === "Sign Up" ? (
-    <button
-      type="submit"
-      className="submit"
-      // onClick={() => {
-      //   setAction("Login");
-      // }}
-    >
-      Sign Up
-    </button>
-  ) : (
-    <button
-      type="button"
-      className="submit gray"
-      onClick={() => setAction("Sign up")}
-    >
-      Sign Up
-    </button>
-  )}
-  {action === "Login" ? (
-    <button
-      type="submit"
-      className="submit"
-      onClick={() => {
-        onSignup();
-      }}
-    >
-      Login
-    </button>
-  ) : (
-    <button
-      type="button"
-      className="submit gray"
-      onClick={() => setAction("Login")}
-    >
-      Login
-    </button>
-  )}
-</div> */}
+      
 
 
         </form>
