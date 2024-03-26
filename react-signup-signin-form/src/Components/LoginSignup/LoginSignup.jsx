@@ -4,7 +4,6 @@ import axios from 'axios';
 import user_icon from '../Assets/person.png';
 import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password.png';
-import Home from '../Pages/Home';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -76,7 +75,7 @@ const LoginSignup = () => {
     }
 
   return (
-    <div className='container'>
+    <div className='container h-auto'>
         <div className="header">
             <div className="text">
                 {action}
@@ -111,7 +110,7 @@ const LoginSignup = () => {
 
         </div>
         {action==="Sign Up"?<div></div>:<div className="forgot-password">Forgot Password? <span>Click here!</span></div>}
-        <div className="submit-container">
+        <div className="submit-container justify-center my-6">
             <div  onClick={()=>{setTimeout(() => {setAction("Sign Up")}, 400)}}><button type={action === "Sign Up"?'submit':'button'} className={action==="Login"?"submit gray":"submit"}>Sign Up</button></div>
               <div   onClick={()=>{setTimeout(() => {setAction("Login")}, 400)}}><button type={action === "Login"?'submit':'button'} className={action==="Sign Up"?"submit gray":"submit"}>Login</button></div>
         </div>

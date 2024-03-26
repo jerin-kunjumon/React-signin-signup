@@ -4,13 +4,13 @@ import {
   BrowserRouter as Router,
   Routes ,
   Route,
-  Link,
+  
 } from "react-router-dom";
 import Home from './Components/Pages/Home';
 
 function App() {
   return (
-    <div className='h-100'>
+    <div className='h-auto'>
     <Router>
                 <Routes >
                     <Route
